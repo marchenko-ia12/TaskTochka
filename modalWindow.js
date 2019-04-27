@@ -9,11 +9,7 @@ function modalRender (info) {
 			>
 				Close
 			</button>
-			<div class="modal-guts" role="document">
-				<h1>${info.title}</h1>
-				<p>${info.content}</p>
-				${checkBoxRender(info.id)}
-			</div>
+			${info.type === 'News' ? news(info) : transaction(info)}
 		</div>
 	`;
 
@@ -25,6 +21,45 @@ function modalRender (info) {
 		modal.classList.toggle("closed");
 		modalOverlay.classList.toggle("closed");
 	});
+}
+
+function news(info) {
+	return (`
+		<div class="modal-guts" role="document">
+			<h1>${info.title}</h1>
+			<p>${info.content}</p>
+			${checkBoxRender(info.id)}
+		</div>
+	`);
+}
+
+function transaction(info) {
+	return (`
+		<div class="modal-guts" role="document">
+			<div>
+				<h1>${info.type}</h1>
+				<div>${renderTransaction(info.arExp, info.sum, info.currency)}</div>
+				<div>from ${info.from}</div>
+				<div>${info.description}</div>
+				<div>${info.date}</div>
+			</div>
+			<button
+			class='delete-btn'
+			onclick='deleter(${info.id})'
+			>
+				Delete
+			</button>
+		</div>
+	`);
+}
+
+function deleter(id) {
+	document.getElementById(`${id}`).remove();
+	const modal = document.querySelector("#modal"),
+		modalOverlay = document.querySelector("#modal-overlay");
+
+	modal.classList.toggle("closed");
+	modalOverlay.classList.toggle("closed");
 }
 
 function check(id) {

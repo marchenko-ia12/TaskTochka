@@ -23,7 +23,7 @@ const renderList = list => {
 		return (row.type === 'Finance Transaction' ?
 			`<tr id='${row.id}'>
 				<td>${row.date}</td>
-				<td>${row.type}</td>
+				<td class='clickable' onclick='modalRender(${JSON.stringify(row)})'>${row.type}</td>
 				<td>${renderTransaction(row.arExp, row.sum, row.currency)}</td>
 				<td>${row.from}: ${row.description}</td>
 			</tr>` : row.type === 'News' ?

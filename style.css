@@ -28,7 +28,7 @@ tr .header {
 }
 
 .checked {
-	background-color: pink;
+	background-color: pink !important;
 }
 
 th.sorted[data-order="-1"]::after {
