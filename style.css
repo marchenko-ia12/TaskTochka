@@ -1,0 +1,52 @@
+caption {
+	margin-bottom: 1em;
+}
+tr {
+	border-bottom: 1px solid grey;
+}
+td {
+	padding-left: 1em;
+	align-items: baseline;
+	width: 200px;
+	height: 40px;
+}
+
+.clickable {
+	cursor: pointer;
+	color: cornflowerblue;
+	text-decoration: underline;
+}
+
+tr .header {
+	cursor: pointer;
+	padding-left: 1em;
+	text-align: start;
+}
+
+.content tr:nth-child(odd) {
+	background-color: #e2e2e2;
+}
+
+.checked {
+	background-color: pink;
+}
+
+th.sorted[data-order="-1"]::after {
+	padding: 0 0 2px 10px;
+	font-size: 10px;
+	content: "▼"
+}
+
+th.sorted[data-order="1"]::after {
+	padding: 0 0 2px 10px;
+	font-size: 10px;
+	content: "▲"
+}
+
+td .transaction-green {
+	color: seagreen;
+}
+
+td .transaction-red {
+	color: tomato;
+}
