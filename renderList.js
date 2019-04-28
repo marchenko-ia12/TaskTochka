@@ -1,26 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => getData());
 
 const getData = () => {
-	const list = new XMLHttpRequest();
-	list.open('GET', 'operations.json', true);
-	list.send();
-
-
-	list.onreadystatechange = function() {
-		if (list.readyState !== 4) {
-			document.getElementsByClassName('content')[0].innerHTML = renderList(JSON.parse(list.responseText));
-			return;
-		}
-
-		if (list.status !== 200) {
-			alert(list.status + ': ' + list.statusText);
-		}
-	};
+	document.getElementsByClassName('content')[0].innerHTML = renderList();
 };
 
-const renderList = list => {
+const renderList = () => {
 	let trn = [];
-	let arr = list.operations;
+	let arr = operations;
 	if (localStorage.getItem('trans')) {
 		trn = localStorage.getItem('trans').split(',');
 		arr = arr.filter(row => trn.indexOf(row.id.toString()) === -1);
