@@ -19,7 +19,13 @@ const getData = () => {
 };
 
 const renderList = list => {
-	return (list.operations.map(row => {
+	let trn = [];
+	let arr = list.operations;
+	if (localStorage.getItem('trans')) {
+		trn = localStorage.getItem('trans').split(',');
+		arr = arr.filter(row => trn.indexOf(row.id.toString()) === -1);
+	}
+	return (arr.map(row => {
 		return (row.type === 'Finance Transaction' ?
 			`<tr id='${row.id}'>
 				<td>${row.date}</td>

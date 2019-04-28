@@ -36,16 +36,18 @@ function news(info) {
 function transaction(info) {
 	return (`
 		<div class="modal-guts" role="document">
-			<div>
+			<div class='trn-info'>
 				<h1>${info.type}</h1>
-				<div>${renderTransaction(info.arExp, info.sum, info.currency)}</div>
-				<div>from ${info.from}</div>
-				<div>${info.description}</div>
+				<div class='first-row'>
+					<div>${renderTransaction(info.arExp, info.sum, info.currency)}</div>
+					<div class='first-row'><div class='word'>from </div>${info.from}</div>
+				</div>
+				<div class='first-row'><div class='word-second'>message:</div> ${info.description}</div>
 				<div>${info.date}</div>
 			</div>
 			<button
-			class='delete-btn'
-			onclick='deleter(${info.id})'
+				class='delete-btn'
+				onclick='deleter(${info.id})'
 			>
 				Delete
 			</button>
@@ -54,6 +56,14 @@ function transaction(info) {
 }
 
 function deleter(id) {
+	let read = [];
+	if (localStorage.getItem('trans')) {
+		localStorage.getItem('trans') ? read.push(localStorage.getItem('trans'), id) : read.push(id);
+	} else {
+		read.push(id)
+	}
+	localStorage.setItem('trans', read);
+
 	document.getElementById(`${id}`).remove();
 	const modal = document.querySelector("#modal"),
 		modalOverlay = document.querySelector("#modal-overlay");
@@ -63,7 +73,6 @@ function deleter(id) {
 }
 
 function check(id) {
-	console.log(id);
 	let read = [];
 	if (document.getElementById("check").checked) {
 		localStorage.getItem('title') ? read.push(localStorage.getItem('title'), id) : read.push(id);

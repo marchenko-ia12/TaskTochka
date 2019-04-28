@@ -1,9 +1,22 @@
+.layout {
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	max-width: 1366px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+thead {
+	line-height: 2;
+}
+
 caption {
 	margin-bottom: 1em;
 }
-tr {
-	border-bottom: 1px solid grey;
-}
+
 td {
 	padding-left: 1em;
 	align-items: baseline;
@@ -49,4 +62,26 @@ td .transaction-green {
 
 td .transaction-red {
 	color: tomato;
+}
+
+.drop-btn {
+	cursor: pointer;
+
+	border-width: 0;
+	font-size: 1em;
+	padding: 5px 10px;
+	outline: none;
+	border-radius: 2px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+	margin-top: 1em;
+	width: 120px;
+
+	background-color: #2ecc71;
+	color: #ecf0f1;
+
+	transition: background-color .3s;
+}
+
+.drop-btn:hover, .drop-btn:focus {
+	background-color: #27ae60;
 }
