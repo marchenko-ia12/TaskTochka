@@ -2,13 +2,6 @@ function modalRender (info) {
 	document.getElementsByClassName('modal-slot')[0].innerHTML = `
 		<div class="modal-overlay" id="modal-overlay"></div>
 		<div class="modal" id="modal" aria-hidden="true" aria-labelledby="modalTitle" aria-describedby="modalDescription" role="dialog">
-			<button
-				class="close-button"
-				id="close-button"
-				title="Close modal window"
-			>
-				Close
-			</button>
 			${info.type === 'News' ? news(info) : transaction(info)}
 		</div>
 	`;
@@ -26,7 +19,16 @@ function modalRender (info) {
 function news(info) {
 	return (`
 		<div class="modal-guts" role="document">
-			<h1>${info.title}</h1>
+			<div class='modal-head'>
+				<h3>${info.title}</h3>
+				<button
+					class="close-button"
+					id="close-button"
+					title="Close modal window"
+				>
+					X
+				</button>
+			</div>
 			<p>${info.content}</p>
 			${checkBoxRender(info.id)}
 		</div>
@@ -37,20 +39,26 @@ function transaction(info) {
 	return (`
 		<div class="modal-guts" role="document">
 			<div class='trn-info'>
-				<h1>${info.type}</h1>
-				<div class='first-row'>
-					<div>${renderTransaction(info.arExp, info.sum, info.currency)}</div>
-					<div class='first-row'><div class='word'>from </div>${info.from}</div>
+				<div class='modal-head'>
+					<h3>${info.date}</h3>
+					<button
+					class="close-button"
+					id="close-button"
+					title="Close modal window"
+					>
+						X
+					</button>
 				</div>
-				<div class='first-row'><div class='word-second'>message:</div> ${info.description}</div>
-				<div>${info.date}</div>
+				<div class='first-row'>${info.from}</div>
+				<h3 class='money'>${renderTransaction(info.arExp, info.sum, info.currency)}</h3>
+				<div class='first-row'> ${info.description}</div>
+				<button
+					class='delete-btn'
+					onclick='deleter(${info.id})'
+				>
+					Delete
+				</button>
 			</div>
-			<button
-				class='delete-btn'
-				onclick='deleter(${info.id})'
-			>
-				Delete
-			</button>
 		</div>
 	`);
 }

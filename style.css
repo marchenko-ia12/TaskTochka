@@ -24,18 +24,12 @@ h3 {
 	margin: 0;
 }
 
-.clickable {
-	cursor: pointer;
-	color: cornflowerblue;
-	text-decoration: underline;
-}
-
 .filter {
 	cursor: pointer;
 	padding-left: 1em;
 	width: 40px;
 	text-align: start;
-	color: cornflowerblue;
+	color: #0554e2;
 }
 
 .sort-up::after {
@@ -50,8 +44,8 @@ h3 {
 	content: "▲"
 }
 
-.transaction-green {
-	color: cornflowerblue !important;
+.transaction-blue {
+	color: #0554e2 !important;
 }
 
 .transaction-red {
@@ -69,12 +63,12 @@ h3 {
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 	width: 120px;
 
-	background-color: #2ecc71;
+	background-color: #019875;
 	color: #ecf0f1;
 
 	transition: background-color .3s;
 }
 
 .drop-btn:hover, .drop-btn:focus {
-	background-color: #27ae60;
+	background-color: #03ad85;
 }

@@ -54,7 +54,7 @@ const renderSubList = row => {
 const renderTransaction = (arExp, sum, currency) => {
 	return (
 		arExp ?
-			`<div class='transaction-green'>+${sum + getCurrency(currency)}</div>`
+			`<div class='transaction-blue'>+${sum + getCurrency(currency)}</div>`
 			: `<div class='transaction-red'>-${sum + getCurrency(currency)}</div>`
 	);
 };
