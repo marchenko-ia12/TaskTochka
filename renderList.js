@@ -5,7 +5,6 @@ const getData = operations => {
 	document.getElementsByClassName('lyt')[0].innerHTML = renderList(operations);
 	if (localStorage.getItem('title')) {
 		nws = localStorage.getItem('title').split(',');
-		console.log(document.getElementsByClassName('card checked'));
 		nws.map(n => document.getElementById(`${n}`).classList.add('checked'));
 	}
 };

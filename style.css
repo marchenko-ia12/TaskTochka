@@ -1,3 +1,6 @@
+body {
+	background: #e2e1e0;
+}
 .layout {
 	display: flex;
 	flex-direction: column;
@@ -30,28 +33,29 @@ h3 {
 .filter {
 	cursor: pointer;
 	padding-left: 1em;
+	width: 40px;
 	text-align: start;
 	color: cornflowerblue;
 }
 
 .sort-up::after {
-	padding: 0 0 2px 10px;
+	padding: 0 0 2px 5px;
 	font-size: 10px;
 	content: "▼"
 }
 
 .sort-down::after {
-	padding: 0 0 2px 10px;
+	padding: 0 0 2px 5px;
 	font-size: 10px;
 	content: "▲"
 }
 
 .transaction-green {
-	color: seagreen;
+	color: cornflowerblue !important;
 }
 
 .transaction-red {
-	color: tomato;
+	color: tomato !important;
 }
 
 .drop-btn {
