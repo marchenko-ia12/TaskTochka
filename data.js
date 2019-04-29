@@ -32,5 +32,14 @@ const operations =  [
 		date: "26.04.2019",
 		type: "News",
 		id: 4
-	}
+	},
+	{
+		sum: 300,
+		schet: 12312342,
+		date: "28.04.2019",
+		type: "Zapros",
+		from: "Me",
+		id: 5
+	},
+
 ];

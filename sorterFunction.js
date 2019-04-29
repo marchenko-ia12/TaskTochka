@@ -1,21 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
+function sorterDate (list) {
+	let sort = localStorage.getItem('sortDate') ? localStorage.getItem('sortDate') : 1;
+	let sorterList = list.sort(function(a, b){
+		if (sort == 1) {
+			localStorage.setItem('sortDate', 0);
+			document.getElementsByClassName('date')[0].classList.add('sort-down');
+		} else {
+			localStorage.setItem('sortDate', 1);
+			document.getElementsByClassName('date')[0].classList.add('sort-up');
+		}
 
-	const getSort = ({ target }) => {
-		const order = (target.dataset.order = -(target.dataset.order || -1));
-		const index = [...target.parentNode.cells].indexOf(target);
-		const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
-		const comparator = (index, order) => (a, b) => order * collator.compare(
-			a.children[index].innerHTML,
-			b.children[index].innerHTML
-		);
+		const aa = a.date.split('.').reverse().join(),
+			bb = b.date.split('.').reverse().join();
+		return sort == 1 ?  aa < bb ? -1 : (aa > bb ? 1 : 0) :  aa > bb ? -1 : (aa > bb ? 1 : 0);
+	});
+	getData(sorterList);
+}
 
-		for(const tBody of target.closest('table').tBodies)
-			tBody.append(...[...tBody.rows].sort(comparator(index, order)));
+function sorterType(list) {
+	let sort = localStorage.getItem('sortType') ? localStorage.getItem('sortType') : 1;
+	let sorterList = list.sort(function(a, b){
+		sort == 1 ? localStorage.setItem('sortType', 0) : localStorage.setItem('sortType', 1);
+		operations.sort(function(a,b){
+			return sort == 1 ? a.type.localeCompare(b.type) : b.type.localeCompare(a.type)
+		})
+	});
 
-		for(const cell of target.parentNode.cells)
-			cell.classList.toggle('sorted', cell === target);
-	};
-
-	document.querySelectorAll('.table_sort thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
-
-});
+	getData(sorterList);
+}

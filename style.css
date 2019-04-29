@@ -3,25 +3,22 @@
 	flex-direction: column;
 	margin: auto;
 	max-width: 1366px;
+	padding: 1em;
 }
 
-table {
-	border-collapse: collapse;
-}
-
-thead {
-	line-height: 2;
-}
-
-caption {
+header {
+	display: flex;
 	margin-bottom: 1em;
 }
 
-td {
-	padding-left: 1em;
-	align-items: baseline;
-	width: 200px;
-	height: 40px;
+header .filters {
+	display: flex;
+	align-items: center;
+	margin-left: auto;
+}
+
+h3 {
+	margin: 0;
 }
 
 .clickable {
@@ -30,37 +27,30 @@ td {
 	text-decoration: underline;
 }
 
-tr .header {
+.filter {
 	cursor: pointer;
 	padding-left: 1em;
 	text-align: start;
+	color: cornflowerblue;
 }
 
-.content tr:nth-child(odd) {
-	background-color: #e2e2e2;
-}
-
-.checked {
-	background-color: pink !important;
-}
-
-th.sorted[data-order="-1"]::after {
+.sort-up::after {
 	padding: 0 0 2px 10px;
 	font-size: 10px;
 	content: "▼"
 }
 
-th.sorted[data-order="1"]::after {
+.sort-down::after {
 	padding: 0 0 2px 10px;
 	font-size: 10px;
 	content: "▲"
 }
 
-td .transaction-green {
+.transaction-green {
 	color: seagreen;
 }
 
-td .transaction-red {
+.transaction-red {
 	color: tomato;
 }
 
@@ -73,7 +63,6 @@ td .transaction-red {
 	outline: none;
 	border-radius: 2px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
-	margin-top: 1em;
 	width: 120px;
 
 	background-color: #2ecc71;

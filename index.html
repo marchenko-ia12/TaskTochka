@@ -7,25 +7,24 @@
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="checkbox.css">
 		<link rel="stylesheet" href="modal.css">
+		<link rel="stylesheet" href="card.css">
 	</head>
 	<body>
 		<div class='layout'>
-			<table class='table_sort'>
-				<caption><h2>Table for Tochka Bank</h2></caption>
-				<thead>
-					<tr>
-						<th class='header'>Date</th>
-						<th class='header'>Type</th>
-					</tr>
-				</thead>
-				<tbody class='content'></tbody>
-			</table>
-			<button class='drop-btn' onclick='dropAll()'>Drop all</button>
+			<h2 style='margin: auto'>List for Tochka Bank</h2>
+			<header>
+				<button class='drop-btn' onclick='dropAll()'>Drop all</button>
+				<div class='filters'>
+					Sorter By
+					<div onclick='sorterDate(operations)' class='filter date'>Date</div>
+					<div onclick='sorterType(operations)' class='filter type'>Type</div>
+				</div>
+			</header>
+			<div class='lyt'></div>
 			<script src='data.js'></script>
 			<script src='modalWindow.js'></script>
 			<script src='renderList.js'></script>
 			<script src='sorterFunction.js'></script>
-			<script src='onLoadChecker.js'></script>
 			<script src='drop.js'></script>
 		</div>
 		<div class='modal-slot'></div>

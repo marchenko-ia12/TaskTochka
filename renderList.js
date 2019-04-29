@@ -1,10 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => getData());
+document.addEventListener('DOMContentLoaded', () => getData(operations));
 
-const getData = () => {
-	document.getElementsByClassName('content')[0].innerHTML = renderList();
+const getData = operations => {
+	let nws = [];
+	document.getElementsByClassName('lyt')[0].innerHTML = renderList(operations);
+	if (localStorage.getItem('title')) {
+		nws = localStorage.getItem('title').split(',');
+		console.log(document.getElementsByClassName('card checked'));
+		nws.map(n => document.getElementById(`${n}`).classList.add('checked'));
+	}
 };
 
-const renderList = () => {
+const renderList = operations => {
 	let trn = [];
 	let arr = operations;
 	if (localStorage.getItem('trans')) {
@@ -13,31 +19,37 @@ const renderList = () => {
 	}
 	return (arr.map(row => {
 		return (row.type === 'Finance Transaction' ?
-			`<tr id='${row.id}'>
-				<td>${row.date}</td>
-				<td class='clickable' onclick='modalRender(${JSON.stringify(row)})'>${row.type}</td>
-				<td>${renderTransaction(row.arExp, row.sum, row.currency)}</td>
-				<td>${row.from}: ${row.description}</td>
-			</tr>` : row.type === 'News' ?
-			`<tr id='${row.id}'>
-				<td>${row.date}</td>
-				<td>${row.type}</td>
-				<td class='clickable' onclick='modalRender(${JSON.stringify(row)})'>${row.title}</td>
-				<td></td>
-			</tr>` : `
-			<tr id='${row.id}'>
-				<td>${row.date}</td>
-				<td>${row.type}</td>
-				${renderSubList(row)}
-			</tr>
+			`<div onclick='modalRender(${JSON.stringify(row)})' class='card' id='${row.id}'>
+				<div class='info'>
+					<h3>${row.type}</h3>
+					<div>${renderTransaction(row.arExp, row.sum, row.currency)}</div>
+					<div>${row.from}: ${row.description}</div>
+					<div>${row.date}</div>
+				</div>
+			</div>` : row.type === 'News' ?
+			`<div onclick='modalRender(${JSON.stringify(row)})' class='card' id='${row.id}'>
+				<div class='info'>
+					<h3 >${row.type}</h3>
+					<div>${row.title}</div>
+					<div>${row.date}</div>
+				</div>
+			</div>` : `
+			<div class='card' id='${row.id}'>
+				<div class='info'>
+					<h3>${row.type}</h3>
+					<div>${row.date}</div>
+					${renderSubList(row)}
+				</div>
+			</div>
 			`
 		);
 	}).join(''));
+
 };
 
 const renderSubList = row => {
 		let sorter = Object.entries(row).filter(i => i[0] !== 'date' && i[0] !== 'type');
-		return (sorter.map(i => `<td>${i[1]}</td>`).join(''));
+		return (sorter.map(i => `<div>${i[1]}</div>`).join(''));
 };
 
 const renderTransaction = (arExp, sum, currency) => {
